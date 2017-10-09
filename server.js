@@ -29,9 +29,6 @@ db.once('open', function() {
     console.log("DB connection successful");
 });
 
-// Create our router
-var router = express.Router();
-
 // Routes for API
 app.use('/users',  users);
 app.use('/movies',  movies);
