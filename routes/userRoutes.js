@@ -33,9 +33,11 @@ router.post('/', function(req, res) {
 
 
     user.save(function(err) {
-        if (err) res.status(400).json("Bad request, missing data");
-
-        res.status(201).json({ message: 'User created!' });
+        if (err) {
+            res.status(400).json({ message: "Bad request, missing data"});
+        } else {
+            res.status(201).json({ message: 'User created!' });
+        }
     });
 });
 

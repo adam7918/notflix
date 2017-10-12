@@ -18,16 +18,10 @@ var mongoose   = require('mongoose');
 var mongoDB = 'mongodb://localhost/database';
 mongoose.connect(mongoDB, {
     useMongoClient: true
+}, function(err) {
+    console.log(err);
 });
 
-// Get the default connection
-var db = mongoose.connection;
-
-// Handle connection events
-db.on('error', console.error.bind(console, 'connection error:'));
-db.once('open', function() {
-    console.log("DB connection successful");
-});
 
 // Routes for API
 app.use('/users',  users);
