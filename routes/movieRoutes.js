@@ -5,9 +5,7 @@ var Movie = require('../models/movie');
 // GET - Returns all movies in a JSON array
 router.get('/', function(req, res) {
     Movie.find(function(err, movies) {
-        // Server error
         if (err) res.status(500).json("Server error");
-        // Returns movie array and status 200
         res.status(200).json(movies);
     });
 });
@@ -15,13 +13,10 @@ router.get('/', function(req, res) {
 // GET - Returns movie based on ID param given by user
 router.get('/:imdbtt', function(req, res) {
     Movie.findOne({"imdbtt" : req.params.imdbtt},function(err, movie) {
-        // Server error
         if (err) res.status(500).json("Server error");
-        // 404 error if movie with imdbtt not found
         if(movie === null){
             res.status(404).json("Movie not found");
         } else {
-            // Returns movie with status 200
             res.status(200).json(movie);
         }
     });
