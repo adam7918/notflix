@@ -2,6 +2,7 @@ var express = require('express');
 var router = express.Router();
 var User = require('../models/user');
 
+
 // GET - Return all users
 router.get('/', function(req, res) {
     User.find(function(err, users) {
@@ -39,5 +40,6 @@ router.post('/', function(req, res) {
         }
     });
 });
+
 
 module.exports = router;

@@ -5,10 +5,16 @@ var express    = require('express');
     ratings   = require('./routes/ratingRoutes');
 var bodyParser = require('body-parser');
 var app        = express();
+var jwt = require('jsonwebtoken');
 
 // Configure body parser
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
+
+
+//Set token key to "adamjoey"
+app.set('private-key', 'adamjoey');
+
 
 // Set port
 var port = process.env.PORT || 3000;
