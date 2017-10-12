@@ -5,7 +5,7 @@ var Movie = require('../models/movie');
 // GET - Returns all movies in a JSON array
 router.get('/', function(req, res) {
     Movie.find(function(err, movies) {
-        if (err) res.status(500).json("Server error");
+        if (err) res.status(500).json({ message: "Server Error 500"});
         res.status(200).json(movies);
     });
 });
@@ -13,9 +13,9 @@ router.get('/', function(req, res) {
 // GET - Returns movie based on ID param given by user
 router.get('/:imdbtt', function(req, res) {
     Movie.findOne({"imdbtt" : req.params.imdbtt},function(err, movie) {
-        if (err) res.status(500).json("Server error");
+        if (err) res.status(500).json({ message: "Server error 500" });
         if(movie === null){
-            res.status(404).json("Movie not found");
+            res.status(404).json({ message: "Movie not found" });
         } else {
             res.status(200).json(movie);
         }
@@ -33,7 +33,7 @@ router.post('/', function(req, res) {
     movie.description = req.body.description;
 
     movie.save(function(err) {
-        if (err) res.status(401).json("Error creating movie");
+        if (err) res.status(401).json({ message: "Error creating movie"});
 
         res.status(201).json({ message: 'Movie created!' });
     });
