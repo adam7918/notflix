@@ -25,8 +25,12 @@ router.get('/:username', function(req, res) {
 
 router.post('/', function(req, res) {
     var user = new User();		// create a new instance of the User model
-    user.name = req.body.name;  // set the user name (comes from the request)
-    user.id = req.body.id;
+    user.firstName = req.body.firstName;  // set the user name (comes from the request)
+    user.lastName = req.body.lastName;
+    user.middleName = req.body.middleName;
+    user.username = req.body.username;
+    user.password = req.body.password;
+
 
     user.save(function(err) {
         if (err) res.status(400).json("Bad request, missing data");
