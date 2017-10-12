@@ -12,6 +12,17 @@ router.get('/', function(req, res) {
     });
 });
 
+router.get('/:username', function(req, res) {
+    User.findOne({"username":req.params.username},function(err, user) {
+        if (err) res.status(500).json("Error code 500, something went horribly wrong");
+        if(user === null){
+            res.status(404).json("User not found");
+        } else {
+            res.status(200).json(user);
+        }
+    });
+});
+
 router.post('/', function(req, res) {
     var user = new User();		// create a new instance of the User model
     user.name = req.body.name;  // set the user name (comes from the request)
@@ -22,7 +33,6 @@ router.post('/', function(req, res) {
 
         res.status(201).json({ message: 'User created!' });
     });
-
 });
 
 module.exports = router;
