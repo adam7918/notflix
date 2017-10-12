@@ -25,8 +25,13 @@ router.post('/', function(req, res) {
 
         res.status(201).json({ message: 'Movie created!' });
     });
-
 });
 
+router.get('/:imdbtt', function(req, res) {
+    Movie.findOne({"imdbtt" : req.params.id},function(err, movies) {
+        if (err) res.status(500).json("Server error");
+        res.status(200).json(movies);
+    });
+});
 
 module.exports = router;
