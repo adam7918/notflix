@@ -5,10 +5,8 @@ var Movie = require('../models/movie');
 // GET ALL MOVIES
 router.get('/', function(req, res) {
     Movie.find(function(err, movies) {
-        if (err)
-            res.send(err);
-
-        res.json(movies);
+        if (err) res.status(500).json("Server error");
+        res.status(200).json(movies);
     });
 });
 
@@ -23,10 +21,9 @@ router.post('/', function(req, res) {
     movie.description = req.body.description;
 
     movie.save(function(err) {
-        if (err)
-            res.send(err);
+        if (err) res.status(401).json("Error creating movie");
 
-        res.json({ message: 'Movie created!' });
+        res.status(201).json({ message: 'Movie created!' });
     });
 
 });

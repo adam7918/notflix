@@ -4,13 +4,11 @@ var router = express.Router();
 
 var User = require('../models/user');
 
-router.get('/userlist', function(req, res) {
+router.get('/', function(req, res) {
     User.find(function(err, users) {
-        if (err)
-            res.send(err);
+        if (err) res.status(500).json("Error code 500, something went horribly wrong");
 
-        console.log(users);
-        res.json(users);
+        res.status(200).json(users);
     });
 });
 
@@ -20,10 +18,9 @@ router.post('/', function(req, res) {
     user.id = req.body.id;
 
     user.save(function(err) {
-        if (err)
-            res.send(err);
+        if (err) res.status(400).json("Bad request, missing data");
 
-        res.json({ message: 'User created!' });
+        res.status(201).json({ message: 'User created!' });
     });
 
 });
