@@ -79,6 +79,10 @@ router.post('/authenticate', function(req, res) {
 
 router.put('/:imdbtt', middlewares.authenticate, function(req, res) {
     // CHECK IF MOVIE EXISTS
+    var authorization = headers.authorization,
+        decoded;
+    decoded = jwt.verify(authorization, secret.secretToken);
+    var username = decoded.username;
     Movie.findOne({"imdbtt": req.params.imdbtt}, function (err, movie) {
         if (err) throw err;
         if (!movie) {
@@ -88,7 +92,7 @@ router.put('/:imdbtt', middlewares.authenticate, function(req, res) {
         } else {
             User.update(
                 {
-                    "username": "Joey"
+                    "username": username
                 },
                 {
                     "$push": {
