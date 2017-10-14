@@ -4,7 +4,7 @@ var express    = require('express');
     movies    = require('./routes/movieRoutes'),
     ratings   = require('./routes/ratingRoutes');
 var bodyParser = require('body-parser');
-var app        = express();
+var app = module.exports = express(); //now app.js can be required to bring app into any file
 var jwt = require('jsonwebtoken');
 
 // Configure body parser
