@@ -59,7 +59,7 @@ router.post('/authenticate', function(req, res) {
                 // create a token with only our given payload
                 // we don't want to pass in the entire user since that has the password
                 const payload = {
-                    admin: user.admin
+                    username: user.username
                 };
                 var token = jwt.sign(payload, req.app.get('private-key'), {
                     expiresIn: 60*60*24 // expires in 24 hours
@@ -78,11 +78,17 @@ router.post('/authenticate', function(req, res) {
 
 
 router.put('/:imdbtt', middlewares.authenticate, function(req, res) {
-    // DECODE USERNAME FROM TOKEN
-    // var authorization = headers.authorization,
-    //     decoded;
-    // decoded = jwt.verify(authorization, secret.secretToken);
+    var uname;
+    jwt.verify(req.headers.authorization, req.app.get('private-key'), function (err,decoded) {
+        if(err){
+            console.log("Fuck");
+        } else {
+            uname = decoded.username;
+            console.log(decoded.username);
+        }
+    });
     // var username = decoded.username;
+
     // CHECK IF MOVIE EXISTS
     Movie.findOne({"imdbtt": req.params.imdbtt}, function (err, movie) {
         if (err) throw err;
@@ -99,7 +105,7 @@ router.put('/:imdbtt', middlewares.authenticate, function(req, res) {
                     console.log("doing NEW INSERT update");
                     User.update(
                         {
-                            "username": "Adam"
+                            "username": uname
                         },
                         {
                             "$push": {
