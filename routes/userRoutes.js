@@ -49,11 +49,11 @@ router.post('/authenticate', function(req, res) {
     User.findOne({"username":req.body.username},function(err, user) {
         if (err) throw err;
         if (!user) {
-            res.json({ success: false, message: 'Authentication failed. User not found.' });
+            res.status(404).json({ success: false, message: 'Authentication failed. User not found.' });
         } else if (user) {
             // check if password matches
             if (user.password !== req.body.password) {
-                res.json({ success: false, message: 'Authentication failed. Wrong password.' });
+                res.status(401).json({ success: false, message: 'Authentication failed. Wrong password.' });
             } else {
                 // if user is found and password is right
                 // create a token with only our given payload
@@ -66,7 +66,7 @@ router.post('/authenticate', function(req, res) {
                 });
 
                 // return the information including token as JSON
-                res.json({
+                res.status(200).json({
                     success: true,
                     message: 'Succesfully authenticated, use the following token in the header!',
                     token: token
