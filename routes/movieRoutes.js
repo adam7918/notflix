@@ -1,6 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var Movie = require('../models/movie');
+var User = require('../models/user');
 
 // GET - Returns all movies in a JSON array
 router.get('/', function(req, res) {
@@ -19,6 +20,22 @@ router.get('/:imdbtt', function(req, res) {
         } else {
             res.status(200).json(movie);
         }
+    });
+});
+
+// GET a list of all movies and their average ratings
+router.get('/ratings/:imdbtt', function(req, res) {
+    User.aggregate([
+        {$unwind : "$movieRating"},
+        {$match: {"movieRating.imdbtt" : req.params.imdbtt}},
+        {$group : {
+            "_id": null,
+            "rating" :{$avg :  "$movieRating.rating"}
+        }
+        }
+    ],  function(err, rating){
+        if (err) throw err;
+        res.status(200).json(rating);
     });
 });
 

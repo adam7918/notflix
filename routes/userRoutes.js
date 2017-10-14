@@ -76,15 +76,14 @@ router.post('/authenticate', function(req, res) {
     });
 });
 
-
-router.put('/:imdbtt', middlewares.authenticate, function(req, res) {
+// UPDATE/INSERT user rating for a movie
+router.put('/ratings/:imdbtt', middlewares.authenticate, function(req, res) {
     var uname;
     jwt.verify(req.headers.authorization, req.app.get('private-key'), function (err,decoded) {
         if(err){
-            console.log("Fuck");
+            throw err;
         } else {
             uname = decoded.username;
-            console.log(decoded.username);
         }
     });
     // var username = decoded.username;
@@ -98,7 +97,7 @@ router.put('/:imdbtt', middlewares.authenticate, function(req, res) {
         } else if (!req.body.rating) {
             res.status(400).json({message: 'Missing rating'}); // IF RATING IS MISSING
         } else {
-            User.findOne({"username": "Adam", "movieRating.imdbtt": req.params.imdbtt}, function (err, user){
+            User.findOne({"username": uname, "movieRating.imdbtt": req.params.imdbtt}, function (err, user){
                 if (err) throw err;
                 if(!user){
                     // INSERT NEW RATING if doesnt exist already
@@ -124,7 +123,7 @@ router.put('/:imdbtt', middlewares.authenticate, function(req, res) {
                     console.log("doing existing update");
                     User.update(
                         {
-                            "username": "Adam",
+                            "username": uname,
                             "movieRating.imdbtt": req.params.imdbtt
                         },
                         {
@@ -143,5 +142,65 @@ router.put('/:imdbtt', middlewares.authenticate, function(req, res) {
         }
     });
 });
+
+// Delete user rating for a movie
+router.delete('/ratings/:imdbtt', middlewares.authenticate, function(req, res) {
+    var uname;
+    jwt.verify(req.headers.authorization, req.app.get('private-key'), function (err,decoded) {
+        if(err){
+            throw err;
+        } else {
+            uname = decoded.username;
+        }
+    });
+
+    // CHECK IF MOVIE EXISTS
+    Movie.findOne({"imdbtt": req.params.imdbtt}, function (err, movie) {
+        if (err) throw err;
+        // IF MOVIE DOESNT EXIST
+        if (!movie) {
+            res.status(404).json({message: 'Movie not found'});
+        } else {
+            User.update(
+                {
+                    "username": uname
+                },
+                {
+                    "$pull": {
+                        "movieRating": { "imdbtt" : req.params.imdbtt}
+                    }
+
+                }, function (err, movie) {
+                    if (err) throw err;
+                    res.status(204).json({message: 'Movie deleted'});
+                });
+        }
+        });
+    });
+
+// GET users own rating for movie they give
+router.get('/ratings/:imdbtt', middlewares.authenticate, function(req, res) {
+    var uname;
+    jwt.verify(req.headers.authorization, req.app.get('private-key'), function (err, decoded) {
+        if (err) {
+            throw err;
+        } else {
+            uname = decoded.username;
+        }
+    });
+    // CHECK IF MOVIE EXISTS
+    Movie.findOne({"imdbtt": req.params.imdbtt}, function (err, movie) {
+        if (err) throw err;
+        // IF MOVIE DOESNT EXIST
+        if (!movie) {
+            res.status(404).json({message: 'Movie not found'});
+        } else {
+            User.find({"username":uname, "movieRating.imdbtt": req.params.imdbtt}, {"movieRating.$": 1, "_id": false}, function(err, user){
+                res.status(200).json(user);
+            });
+        }
+    });
+});
+
 
 module.exports = router;

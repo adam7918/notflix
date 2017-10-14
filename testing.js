@@ -27,7 +27,7 @@ describe("Users", function(){
 
     it("should return all the users", function(done){
         server.get("/users")
-            .set('x-access-token', token)
+            .set('authorization', token)
             .expect("Content-type", /json/)
             .expect(200, done);
     });
