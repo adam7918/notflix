@@ -2,6 +2,7 @@ var express = require('express');
 var jwt = require('jsonwebtoken');
 var router = express.Router();
 var User = require('../models/user');
+var Movie = require('../models/movie');
 var middlewares = require('./middlewares');
 
 
@@ -76,8 +77,32 @@ router.post('/authenticate', function(req, res) {
 });
 
 
-router.post('/:imdbtt', middlewares.authenticate, function(req, res) {
-
+router.put('/:imdbtt', middlewares.authenticate, function(req, res) {
+    // CHECK IF MOVIE EXISTS
+    Movie.findOne({"imdbtt": req.params.imdbtt}, function (err, movie) {
+        if (err) throw err;
+        if (!movie) {
+            res.status(404).json({message: 'Movie not found'});
+        } else if (!req.body.rating) {
+            res.status(400).json({message: 'Missing rating'});
+        } else {
+            User.update(
+                {
+                    "username": "Joey"
+                },
+                {
+                    "$push": {
+                        "movieRating": {
+                            "imdbtt": req.params.imdbtt,
+                            "rating": req.body.rating
+                        }
+                    }
+                }, function (err, movie) {
+                    if (err) throw err;
+                    res.status(200).json({message: 'Movie Rated!'});
+                });
+        }
+    });
 });
 
 module.exports = router;
