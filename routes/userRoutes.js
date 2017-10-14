@@ -78,33 +78,62 @@ router.post('/authenticate', function(req, res) {
 
 
 router.put('/:imdbtt', middlewares.authenticate, function(req, res) {
+    // DECODE USERNAME FROM TOKEN
+    // var authorization = headers.authorization,
+    //     decoded;
+    // decoded = jwt.verify(authorization, secret.secretToken);
+    // var username = decoded.username;
     // CHECK IF MOVIE EXISTS
-    var authorization = headers.authorization,
-        decoded;
-    decoded = jwt.verify(authorization, secret.secretToken);
-    var username = decoded.username;
     Movie.findOne({"imdbtt": req.params.imdbtt}, function (err, movie) {
         if (err) throw err;
+        // IF MOVIE DOESNT EXIST
         if (!movie) {
             res.status(404).json({message: 'Movie not found'});
         } else if (!req.body.rating) {
-            res.status(400).json({message: 'Missing rating'});
+            res.status(400).json({message: 'Missing rating'}); // IF RATING IS MISSING
         } else {
-            User.update(
-                {
-                    "username": username
-                },
-                {
-                    "$push": {
-                        "movieRating": {
-                            "imdbtt": req.params.imdbtt,
-                            "rating": req.body.rating
-                        }
-                    }
-                }, function (err, movie) {
-                    if (err) throw err;
-                    res.status(200).json({message: 'Movie Rated!'});
-                });
+            User.findOne({"username": "Adam", "movieRating.imdbtt": req.params.imdbtt}, function (err, user){
+                if (err) throw err;
+                if(!user){
+                    // INSERT NEW RATING if doesnt exist already
+                    console.log("doing NEW INSERT update");
+                    User.update(
+                        {
+                            "username": "Adam"
+                        },
+                        {
+                            "$push": {
+                                "movieRating": {
+                                    "imdbtt": req.params.imdbtt,
+                                    "rating": req.body.rating
+                                }
+                            }
+
+                        }, function (err, movie) {
+                            if (err) throw err;
+                            res.status(200).json({message: 'Movie rated!'});
+                        });
+                } else {
+                    // UPDATE EXISTING RATING
+                    console.log("doing existing update");
+                    User.update(
+                        {
+                            "username": "Adam",
+                            "movieRating.imdbtt": req.params.imdbtt
+                        },
+                        {
+                            "$set": {
+                                    "movieRating.$.imdbtt": req.params.imdbtt,
+                                    "movieRating.$.rating": req.body.rating
+                            }
+
+                        }, function (err, movie) {
+                            if (err) throw err;
+                            res.status(200).json({message: 'Movie rating updated'});
+                        });
+                }
+            });
+
         }
     });
 });
