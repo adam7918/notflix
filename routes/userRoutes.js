@@ -2,39 +2,11 @@ var express = require('express');
 var jwt = require('jsonwebtoken');
 var router = express.Router();
 var User = require('../models/user');
+var middlewares = require('./middlewares');
 
-
-router.use('/', function (req, res, next) {
-    if (req.originalUrl === '/users' && req.method === 'POST' || req.originalUrl === '/users/authenticate') {
-        return next();
-    } else {
-        var token = req.body.token || req.query.token || req.headers['x-access-token'];
-        // decode token
-        if (token) {
-            // verifies secret and checks exp
-            jwt.verify(token, req.app.get('private-key'), function (err, decoded) {
-                if (err) {
-                    return res.json({success: false, message: 'Failed to authenticate token.'});
-                } else {
-                    // if everything is good, save to request for use in other routes
-                    req.decoded = decoded;
-                    next();
-                }
-            });
-        } else {
-            // if there is no token
-            // return an error
-            return res.status(403).send({
-                success: false,
-                message: 'No token provided.'
-            });
-
-        }
-    }
-});
 
 // GET - Return all users
-router.get('/', function(req, res) {
+router.get('/', middlewares.authenticate,function(req, res) {
     User.find(function(err, users) {
         if (err) res.status(500).json({ message: "Server Error 500"});
 
@@ -43,7 +15,7 @@ router.get('/', function(req, res) {
 });
 
 // GET - Return user based on username parameter
-router.get('/:username', function(req, res) {
+router.get('/:username', middlewares.authenticate, function(req, res) {
     User.findOne({"username":req.params.username},function(err, user) {
         if (err) res.status(500).json({ message: "Server Error 500"});
         if(user === null){
@@ -104,7 +76,7 @@ router.post('/authenticate', function(req, res) {
 });
 
 
-router.post('/:imdbtt', function(req, res) {
+router.post('/:imdbtt', middlewares.authenticate, function(req, res) {
 
 });
 

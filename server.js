@@ -3,9 +3,9 @@ var express    = require('express');
     users    = require('./routes/userRoutes'),
     movies    = require('./routes/movieRoutes'),
     ratings   = require('./routes/ratingRoutes');
+
 var bodyParser = require('body-parser');
 var app = module.exports = express(); //now app.js can be required to bring app into any file
-var jwt = require('jsonwebtoken');
 
 // Configure body parser
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -25,7 +25,8 @@ var mongoDB = 'mongodb://localhost/database';
 mongoose.connect(mongoDB, {
     useMongoClient: true
 }, function(err) {
-    console.log(err);
+    if (err)
+        console.log(err);
 });
 
 
