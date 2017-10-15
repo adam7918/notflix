@@ -23,7 +23,7 @@ router.get('/:imdbtt', function(req, res) {
     });
 });
 
-// GET a list of all movies and their average ratings
+// GET a movies average rating from all it's ratings
 router.get('/ratings/:imdbtt', function(req, res) {
     User.aggregate([
         {$unwind : "$movieRating"},
