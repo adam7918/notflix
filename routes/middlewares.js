@@ -5,7 +5,7 @@ module.exports = {
         var token = req.body.token || req.query.token || req.headers['authorization'];
         // decode token
         if (token) {
-            // verifies secret and checks exp
+            // verifies secret
             jwt.verify(token, req.app.get('private-key'), function (err, decoded) {
                 if (err) {
                     return res.status(401).json({success: false, message: 'Failed to authenticate token.'});

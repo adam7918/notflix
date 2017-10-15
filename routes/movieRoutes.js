@@ -39,7 +39,7 @@ router.get('/ratings/:imdbtt', function(req, res) {
     });
 });
 
-// =========USED FOR TESTING===========DELETE AFTER
+// =========USED FOR TESTING=========== ADD A MOVIE ======
 router.post('/', function(req, res) {
     var movie = new Movie();
     movie.imdbtt = req.body.imdbtt;

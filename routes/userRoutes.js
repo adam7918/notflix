@@ -202,5 +202,4 @@ router.get('/ratings/:imdbtt', middlewares.authenticate, function(req, res) {
     });
 });
 
-
 module.exports = router;

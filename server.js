@@ -1,9 +1,7 @@
 // Call packages needed
-var express    = require('express');
+var express    = require('express'),
     users    = require('./routes/userRoutes'),
-    movies    = require('./routes/movieRoutes'),
-    ratings   = require('./routes/ratingRoutes');
-
+    movies    = require('./routes/movieRoutes');
 var bodyParser = require('body-parser');
 var app = module.exports = express(); //now app.js can be required to bring app into any file
 
@@ -11,10 +9,8 @@ var app = module.exports = express(); //now app.js can be required to bring app 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
-
 //Set token key to "adamjoey"
 app.set('private-key', 'adamjoey');
-
 
 // Set port
 var port = process.env.PORT || 3000;
@@ -29,11 +25,9 @@ mongoose.connect(mongoDB, {
         console.log(err);
 });
 
-
 // Routes for API
 app.use('/users',  users);
 app.use('/movies',  movies);
-app.use('/ratings', ratings);
 
 // Start the server
 app.listen(port);
