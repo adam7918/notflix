@@ -54,13 +54,12 @@ describe("Ratings", function(){
             .expect(200 || 201, done);
     });
     it("User removes his rating", function(done){
-        server.delete("/user/ratings/1")
+        server.delete("/users/ratings/1")
             .set('authorization', token)
-            .expect("Content-type", /json/)
             .expect(204, done);
     });
     it("User sees his own rating", function(done){
-        server.delete("/user/ratings/1")
+        server.get("/users/ratings/1")
             .set('authorization', token)
             .expect("Content-type", /json/)
             .expect(200, done);
