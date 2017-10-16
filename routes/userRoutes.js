@@ -10,7 +10,6 @@ var middlewares = require('./middlewares');
 router.get('/', middlewares.authenticate,function(req, res) {
     User.find(function(err, users) {
         if (err) res.status(500).json({ message: "Server Error 500"});
-
         res.status(200).json(users);
     });
 });
@@ -29,8 +28,8 @@ router.get('/:username', middlewares.authenticate, function(req, res) {
 
 // POST - add a new user
 router.post('/', function(req, res) {
-    var user = new User();		// create a new instance of the User model
-    user.firstName = req.body.firstName;  // set the user name (comes from the request)
+    var user = new User();
+    user.firstName = req.body.firstName;
     user.lastName = req.body.lastName;
     user.middleName = req.body.middleName;
     user.username = req.body.username;

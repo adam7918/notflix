@@ -5,6 +5,9 @@ var express    = require('express'),
 var bodyParser = require('body-parser');
 var app = module.exports = express(); //now app.js can be required to bring app into any file
 
+// Serve static content (from public folder)
+app.use(express.static('public_html'));
+
 // Configure body parser
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
