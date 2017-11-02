@@ -103,6 +103,37 @@ body {
     width: auto;
 }
 
+.container-fluid form {
+    margin-top: 50px;
+    width: 80%;
+}
+
+.container-fluid form label {
+    color: white;
+}
+
+.container-fluid form input:focus {
+    border-color: #fd444a;
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset, 0 0 8px #fd444a;
+    outline: 0 none;
+}
+
+.container-fluid form button {
+    margin-top: 5px;
+    background-color:#fd444a;
+    border: none;
+    width: 100px;
+    color: white;
+    height: 50px;
+}
+
+.container-fluid form button:hover {
+    background-color: #fd444a;
+}
+
+.container-fluid form button:active {
+    background-color: #fd444a;
+}
 .container-fluid h2 {
     color: white;
     font-weight: normal;
@@ -155,6 +186,42 @@ body {
     -ms-user-select: none; /* Internet Explorer/Edge */
     user-select: none;
     cursor: default;
+}
+
+.user-container {
+    margin:10px;
+    width:225px;
+    height:65px;
+    border:1px solid #FD444A;
+    float:left;
+}
+
+.user-info {
+    float:left;
+    height:100%;
+    color:white;
+    width:70%;
+    padding-top:5px;
+    padding-left:10px;
+    background:#181C1F;
+}
+
+.user-info h1{
+    font-size:20px;
+}
+
+.user-info h2{
+    font-size:15px;
+}
+
+.user-button {
+    background-color:#FD444A;
+    height:100%;
+    width:30%;
+    float:right;
+    text-align:center;
+    vertical-align: middle;
+    line-height: 60px;
 }
 
 
