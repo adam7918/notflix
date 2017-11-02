@@ -7,7 +7,8 @@ var MovieSchema   = new Schema({
     publicationDate: { type : Date, required: true },
     length: { type : Number, required: true },
     director: { type : String, required: true },
-    description: { type : String, required: true }
+    description: { type : String, required: true },
+    poster: { type : String, required: true}
 });
 
 module.exports = mongoose.model('Movie', MovieSchema);

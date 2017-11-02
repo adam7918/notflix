@@ -48,6 +48,7 @@ router.post('/', function(req, res) {
     movie.length = req.body.length;
     movie.director = req.body.director;
     movie.description = req.body.description;
+    movie.poster = req.body.poster;
 
     movie.save(function(err) {
         if (err) res.status(401).json({ message: "Error creating movie"});
