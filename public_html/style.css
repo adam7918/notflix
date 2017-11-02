@@ -1,0 +1,174 @@
+html {
+    background-color: #222b32;
+    min-height: 100%;
+}
+
+body {
+    min-height: 100%;
+}
+.navbar {
+    background-color: #fd444a;
+    box-shadow: 3px 0px 10px #19262C;
+    position: fixed;
+    left: 0px;
+    right: 0px;
+    z-index: 999;
+}
+
+.navbar form {
+
+}
+
+.navbar form input {
+    border: none;
+    background: none;
+    color: white;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+}
+
+.navbar form input:focus {
+    border: none;
+    background: none;
+    color: white;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+}
+
+.navbar form input::-webkit-input-placeholder {
+    color: white;
+}
+
+.navbar form input:-moz-placeholder {
+    color: white;
+}
+
+.navbar form input::-moz-placeholder {
+    color: white;
+}
+
+.navbar form input:-ms-input-placeholder {
+    color: white;
+}
+
+.navbar form input:-ms-input-placeholder {
+    color: white;
+}
+
+.navbar-brand {
+    color: white;
+    font-size: 25px;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+.navbar-brand:hover {
+    color: white;
+}
+
+.navbar-nav {
+    flex-direction: row;
+}
+
+.navbar-nav a {
+    color: white
+}
+
+.nav {
+    z-index: 999;
+    top: 63px;
+    background-color: #181c1f;
+    padding: 20px 5px 5px 5px;
+    position: fixed;
+    height: 100% !important;
+    min-height: 100%;
+    width: 200px;
+    box-shadow: 2px 3px 5px 0px #19262C;
+}
+
+.nav .nav-link {
+    color: white
+}
+
+.nav h3 {
+    color: #fd444a;
+    font-weight: normal;
+    font-size: 18px;
+}
+
+.container-fluid {
+    padding: 113px 50px 50px 50px;
+    margin-left: 200px;
+    background-color: #222b32;
+    width: auto;
+}
+
+.container-fluid h2 {
+    color: white;
+    font-weight: normal;
+}
+
+.container {
+    display: flex;
+    flex-direction: row;
+    padding: 0px;
+    margin: 0 auto;
+}
+
+.container-fluid .test {
+    background-color: white;
+    height: 250px;
+    width: 200px;
+    margin: 20px 20px 20px 0px;
+}
+.movie {
+    background:white;
+    height:250px;
+    box-shadow: 0 12px 55px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+.movie-container {
+    margin:5px 20px 0px 0px;
+    width:175px;
+    float:left;
+}
+.movie-container h2{
+    margin-top:15px;
+    color:white;
+    font-size:15px;
+    font-family: 'Roboto', sans-serif;
+}
+.movie-rating {
+    text-align:center;
+    width:40px;
+    height:25px;
+    background:#FD444A;
+    color:white;
+    margin: 0 auto;
+    position:relative;
+    top:12px;
+    border: 0px solid;
+    border-radius: 15px;
+    -webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: none; /* Safari */
+    -khtml-user-select: none; /* Konqueror HTML */
+    -moz-user-select: none; /* Firefox */
+    -ms-user-select: none; /* Internet Explorer/Edge */
+    user-select: none;
+    cursor: default;
+}
+
+
+@media all and (max-width: 700px) {
+    .navbar form input {
+        width: 100px;
+    }
+
+    .nav {
+        width: 150px;
+    }
+
+    .container-fluid {
+        margin-left: 150px;
+    }
+
+}
