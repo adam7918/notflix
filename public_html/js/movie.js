@@ -48,8 +48,6 @@ $.ajax
         alert("Movie does not exist");
         window.location = "index.html";
     }
-}).done(function () {
-
 });
 $(document).ready(function() {
     var slider = document.getElementById("myRange");
@@ -64,7 +62,7 @@ var accessToken = localStorage.getItem('accessToken');
 $(function () {
     $('#rate-button').click(function () {
         var output = document.getElementById("sliderRating");
-        var ratingJson = {rating: output.innerHTML};
+        var ratingJson = {rating: parseInt(output.innerHTML)};
         $.ajax
         ({
             type: "PUT",

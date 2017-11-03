@@ -3,8 +3,7 @@ $(function () {
     if(localStorage.getItem('accessToken')){
         $(".logged-in").show();
         $(".logged-out").hide(0);
-        $('#logged-in-user').text(localStorage.getItem('username'));
-
+        $('#logged-in-user').text(localStorage.getItem('username')).attr('href', 'user.html?username=' + localStorage.getItem('username'));
     } else {
         $(".logged-in").hide(0);
         $(".logged-out").show();

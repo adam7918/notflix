@@ -16,9 +16,9 @@ $.ajax({
                 '            <h1>' + user.username + '</h1>\n' +
                 '            <h2>' + user.firstName + ' ' + user.lastName + '</h2>\n' +
                 '        </div>\n' +
-                '        <div class="user-button">\n' +
+                '        <a class="clickable" href="user.html?username=' + user.username + '"><div class="user-button">\n' +
                 '            >\n' +
-                '        </div>\n' +
+                '        </div></a>\n' +
                 '    </div>');
         });
     }

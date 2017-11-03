@@ -24,6 +24,8 @@
     <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
+    <script src="js/user.js"></script>
+    <script src="js/loginstate.js"></script>
 
 </head>
 <body>
@@ -35,21 +37,21 @@
         </form>
     </div>
     <div class="navbar-nav">
-        <a class="nav-item nav-link mr-2" href="login.html">Login</a>
-        <a class="nav-item nav-link mr-2" href="register.html">Register</a>
+        <a class="nav-item nav-link mr-2 logged-in" id="logged-in-user" href="#">Username</a>
+        <a class="nav-item nav-link mr-2 logged-out" href="login.html">Login</a>
+        <a class="nav-item nav-link mr-2 logged-out" href="register.html">Register</a>
     </div>
 </nav>
 <nav class="nav flex-column">
     <h3 class="m-2">Movies</h3>
     <a class="nav-link" href="index.html">All movies</a>
-    <h3 class="m-2">Users</h3>
-    <a class="nav-link" href="userlist.html">All users</a>
-    <a class="nav-link" href="#">Log out</a>
+    <div class="logged-in">
+        <h3 class="m-2">Users</h3>
+        <a class="nav-link" href="userlist.html">All users</a>
+        <a class="nav-link" id="logout" href="#">Log out</a>
+    </div>
 </nav>
 <div class="container-fluid">
-    <h2 id="profile">JoeyyT</h2>
-    <h3 id="name">Joey Teunissen</h3>
-
     <h2 id="red">Rated Movies</h2>
     <div class="movie-container">
         <div class="movie-rating">8.1</div>

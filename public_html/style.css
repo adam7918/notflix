@@ -221,7 +221,7 @@ body {
     float:right;
     text-align:center;
     vertical-align: middle;
-    line-height: 60px;
+    line-height: 63px;
 }
 
 .logged-out {
@@ -290,6 +290,16 @@ body {
 .movie-year {
     color:gray;
     margin-left:5px;
+}
+
+.clickable {
+    display: block;
+    text-decoration: none;
+    color: inherit;
+}
+
+.clickable:hover {
+    color: inherit;
 }
 .slider {
     margin-top: 50px;
