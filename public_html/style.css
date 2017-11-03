@@ -224,7 +224,50 @@ body {
     line-height: 60px;
 }
 
+.movie-rating-bar {
+    width:350px;
+    height:50px;
+    background-color: #fd444a;
+    color:white;
+    text-align:center;
+    font-size:25px;
+    font-weight:100;
+    vertical-align: middle;
+    line-height: 45px;
+}
+.movie-poster-container figure {
+    border:0px solid black;
+}
+.movie-poster {
+    height:500px;
+    width:350px;
+    background: #000;
+    box-shadow: 0 12px 55px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 
+}
+.movie-information-container {
+    color:white;
+    margin-left:20px;
+}
+.rating-button {
+    margin-top:50px;
+}
+.movie-information-container h2 {
+    float:left;
+}
+.movie-information-container h3 {
+    font-size:20px;
+    font-weight: 100;
+    clear:both;
+}
+
+.movie-description {
+    font-weight: 100;
+}
+.movie-year {
+    color:gray;
+    margin-left:5px;
+}
 @media all and (max-width: 700px) {
     .navbar form input {
         width: 100px;
