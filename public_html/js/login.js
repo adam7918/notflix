@@ -1,3 +1,7 @@
+if(localStorage.getItem('accessToken')){
+    alert("You are already logged in");
+    window.location = "index.html";
+}
 $(function () {
     $('#login').click(function (e) {
         e.preventDefault();
@@ -14,6 +18,7 @@ $(function () {
             data: JSON.stringify(user),
             success: function (response) {
                 localStorage.setItem('accessToken', response.token);
+                localStorage.setItem('username', response.username);
                 window.location = "index.html";
             },
             error: function () {
@@ -23,5 +28,4 @@ $(function () {
 
         });
     });
-
 });

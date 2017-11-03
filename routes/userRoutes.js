@@ -67,6 +67,7 @@ router.post('/authenticate', function(req, res) {
                 // return the information including token as JSON
                 res.status(200).json({
                     success: true,
+                    username: user.username,
                     message: 'Succesfully authenticated, use the following token in the header!',
                     token: token
                 });
