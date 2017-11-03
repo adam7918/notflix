@@ -12,6 +12,7 @@ module.exports = {
                 } else {
                     // if everything is good, save to request for use in other routes
                     req.decoded = decoded;
+                    decoded.username;
                     next();
                 }
             });
