@@ -252,6 +252,9 @@ body {
 .rating-button {
     margin-top:50px;
 }
+.edit-button {
+    margin-top:5px;
+}
 .movie-information-container h2 {
     float:left;
 }
@@ -261,6 +264,23 @@ body {
     clear:both;
 }
 
+#profile {
+    font-size:30px;
+}
+
+#name {
+    color:white;
+    font-weight:100;
+    font-size:20px;
+    margin-bottom:50px;
+}
+.buttons {
+    color:#fd444a;
+}
+.buttons a  {
+    text-decoration: none;
+    color:#fd444a;
+}
 .movie-description {
     font-weight: 100;
 }
