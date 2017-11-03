@@ -15,7 +15,7 @@ $.ajax({
                             movieRating = "N/A";
                         }
                     }
-                    $(".container-fluid").append('<a style="display:block" href="#"><div class="movie-container">\n' +
+                    $(".container-fluid").append('<a style="display:block" href="movie.html?imdbtt=' + movie.imdbtt + '"><div class="movie-container">\n' +
                         '            <div class="movie-rating">' + movieRating + '</div>\n' +
                         '            <div class="movie" style="background:url(' + movie.poster + ')">\n' +
                         '            </div>\n' +

@@ -24,6 +24,8 @@
     <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
+    <script src="js/loginstate.js"></script>
+    <script src="js/movie.js"></script>
 
 </head>
 <body>
@@ -35,35 +37,21 @@
         </form>
     </div>
     <div class="navbar-nav">
-        <a class="nav-item nav-link mr-2" href="login.html">Login</a>
-        <a class="nav-item nav-link mr-2" href="register.html">Register</a>
+        <a class="nav-item nav-link mr-2 logged-in" id="logged-in-user" href="#">Username</a>
+        <a class="nav-item nav-link mr-2 logged-out" href="login.html">Login</a>
+        <a class="nav-item nav-link mr-2 logged-out" href="register.html">Register</a>
     </div>
 </nav>
 <nav class="nav flex-column">
     <h3 class="m-2">Movies</h3>
     <a class="nav-link" href="index.html">All movies</a>
-    <h3 class="m-2">Users</h3>
-    <a class="nav-link" href="userlist.html">All users</a>
-    <a class="nav-link" href="#">Log out</a>
+    <div class="logged-in">
+        <h3 class="m-2">Users</h3>
+        <a class="nav-link" href="userlist.html">All users</a>
+        <a class="nav-link" id="logout" href="#">Log out</a>
+    </div>
 </nav>
 <div class="container-fluid">
-    <div class="row">
-        <div class="movie-poster-container">
-            <figure><img src="http://nothingbutgeek.com/wp-content/uploads/2016/02/now-you-see-me-2-01-170339.jpg" class="movie-poster"></figure>
-            <div class="movie-rating-bar">8.6</div>
-        </div>
-        <div class="movie-information-container col">
-            <h2>Now You See Me 2</h2><small class="movie-year" >2016</small><br>
-            <h3>Director: Adam Summerfield</h3>
-            <p class="movie-description">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam cursus at lectus eu dapibus. Sed tristique feugiat faucibus. Quisque non erat tortor. Proin fermentum sodales aliquam. In id ultricies lacus, semper luctus eros. Aenean maximus luctus ipsum, in dictum enim venenatis a. Sed sit amet massa id magna ullamcorper vestibulum vitae a diam.
-
-                Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Quisque tincidunt magna lacus, gravida vulputate diam lacinia non. Duis augue urna, congue sit amet lacus sit amet, facilisis semper lacus. Mauris mollis, urna vehicula gravida tincidunt, sapien enim pharetra elit, eu tristique mauris sapien non felis. Aenean tempor quam a tortor tristique, quis ultrices velit aliquet. Nunc non lectus ligula. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec in neque condimentum, pharetra erat quis, elementum nisi. Aenean aliquam et diam ac rhoncus. Mauris ac ornare dui, eget consequat dui. In eu consequat nisi.
-            </p>
-            <small class="runtime">Runtime: 220 minutes.</small><br>
-            <button class="btn btn-outline-danger rating-button">Rate</button>
-        </div>
-    </div>
 </div>
 
 </body>
