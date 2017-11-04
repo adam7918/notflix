@@ -341,10 +341,32 @@ body {
     }
 
     .container-fluid {
-        margin-left: 150px;
+        margin-left: 140px;
     }
 
     .user-container {
         margin-left: -30px;
+    }
+}
+
+@media all and (max-width: 593px) {
+    .movie-poster {
+        height:350px;
+        width:210px;
+    }
+    .movie-rating-bar {
+        width:210px;
+    }
+
+    .movie-information-container {
+        margin-left: 0;
+        margin-top: 15px;
+    }
+}
+
+@media all and (max-width: 808px) {
+    .movie-information-container {
+        margin-left: 0;
+        margin-top: 15px;
     }
 }
