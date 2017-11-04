@@ -21,8 +21,36 @@ $.ajax
     },
     url: "/users/" + username,
     success: function (response) {
-        $(".container-fluid").append(' <h2 id="profile">' + response.username + '</h2>\n' +
+        $(".container-fluid").prepend(' <h2 id="profile">' + response.username + '</h2>\n' +
             '    <h3 id="name">' + response.firstName + ' ' + response.lastName + '</h3>');
+        var moviePoster,title;
+        $.each(response.movieRating, function(i, item) {
+
+            $.ajax
+            ({
+                type: "GET",
+                url: "/movies/" + item.imdbtt,
+                success: function (response) {
+                    moviePoster = response.poster;
+                    title = response.title;
+                    $(".container-fluid").append('    <div class="movie-container">\n' +
+                        '        <div class="movie-rating">' + item.rating + '</div>\n' +
+                        '        <div class="movie" style="background: url(' + moviePoster + '">\n' +
+                        '\n' +
+                        '        </div>\n' +
+                        '        <h2>' + title + '</h2>\n' +
+                        '        <a href="movie.html?imdbtt=' + item.imdbtt + '"<button class="btn btn-outline-danger edit-button">Edit</button></a>\n' +
+                        '        <button class="btn btn-outline-danger edit-button" id="rating-delete">Delete</button>\n' +
+                        '    </div>');
+
+                },
+                error: function () {
+                    alert("Movie does not exist");
+                    window.location = "index.html";
+                }
+            });
+
+        });
     },
     error: function () {
         alert("User does not exist" + username);
