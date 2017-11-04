@@ -52,7 +52,11 @@ $.ajax
 $(document).ready(function() {
     var slider = document.getElementById("myRange");
     var output = document.getElementById("sliderRating");
-    output.innerHTML = slider.value;
+    try {
+        output.innerHTML = slider.value;
+    } catch (e) {
+        output.innerHTML = 1;
+    }
 
     slider.oninput = function() {
         output.innerHTML = this.value;

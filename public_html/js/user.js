@@ -13,6 +13,24 @@ function getParameterByName(name, url) {
 }
 var username = getParameterByName('username');
 var accessToken = localStorage.getItem('accessToken');
+if(getParameterByName('delete')){
+    $.ajax
+    ({
+        type: "DELETE",
+        headers: {
+            'authorization': accessToken
+        },
+        url: "/users/ratings/" + getParameterByName('delete'),
+        success: function (response) {
+            alert("Movie rating removed");
+            window.location = "user.html?username=" + username;
+        },
+        error: function (reponse) {
+            alert(reponse.message);
+            window.location = "user.html?username=" + username;
+        }
+    });
+}
 $.ajax
 ({
     type: "GET",
@@ -39,8 +57,8 @@ $.ajax
                         '\n' +
                         '        </div>\n' +
                         '        <h2>' + title + '</h2>\n' +
-                        '        <a href="movie.html?imdbtt=' + item.imdbtt + '"<button class="btn btn-outline-danger edit-button">Edit</button></a>\n' +
-                        '        <button class="btn btn-outline-danger edit-button" id="rating-delete">Delete</button>\n' +
+                        '        <a href="user.html?imdbtt=' + item.imdbtt + '"<button class="btn btn-outline-danger edit-button">Edit</button></a>\n' +
+                        '        <a href="user.html?username=' + username + '&delete=' + item.imdbtt + '"><button class="btn btn-outline-danger edit-button" id="rating-delete">Delete</button></a>\n' +
                         '    </div>');
 
                 },
