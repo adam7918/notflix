@@ -21,5 +21,9 @@ $.ajax({
                 '        </div></a>\n' +
                 '    </div>');
         });
+    },
+    error: function(){
+        alert("Could not get list of users");
+        window.location = "index.html";
     }
 });
