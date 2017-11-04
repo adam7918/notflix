@@ -37,9 +37,9 @@ $.ajax
             '            <h2>' + response.title + '</h2><small class="movie-year" >' + response.publicationDate.substring(0, 4) + '</small><br>\n' +
             '            <h3>Director: ' + response.director + '</h3>\n' +
             '            <p class="movie-description">' + response.description + '</p>\n' +
-            '            <small class="runtime">Runtime: ' + response.length + ' minutes.</small><br>\n <div id="slidecontainer">\n' +
+            '            <small class="runtime">Runtime: ' + response.length + ' minutes</small><br>\n <div id="slidecontainer">\n' +
             '  <input type="range" min="1" max="10" value="1" class="slider logged-in" id="myRange">\n' +
-            '</div><p id="sliderRating" style="margin-top: 25px"></p>' +
+            '</div><p id="sliderRating" class="logged-in" style="margin-top: 25px"></p>' +
             '            <button class="btn btn-outline-danger rating-button logged-in" id="rate-button">Rate</button>\n' +
             '        </div>\n' +
             '    </div>');
