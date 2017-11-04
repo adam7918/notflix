@@ -24,7 +24,6 @@ $.ajax({
                 },
                 error: [
                     function () {
-                        alert(movie.title);
                     }
                 ]
             });
